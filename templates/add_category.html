@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Adicionar Categoria{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color: #a259ff;">Adicionar Categoria</h2>
+<form method="POST" class="w-50 mx-auto">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" id="name" name="name" class="form-control" required maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <input type="text" id="description" name="description" class="form-control" maxlength="150">
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

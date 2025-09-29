@@ -11,7 +11,7 @@ class CategoryCreated(CategoryEvent):
         self.data = data
 
     def __repr__(self):
-        return f"<CategoryCreated id={self.category_id} at={self.timestamp}>"
+        return f"<CategoryCreated id={self.category_id} at={self.timestamp:%d/%m/%Y %H:%M:%S}>"
 
 class CategoryUpdated(CategoryEvent):
     def __init__(self, category_id, timestamp, updated_fields):
@@ -19,12 +19,12 @@ class CategoryUpdated(CategoryEvent):
         self.updated_fields = updated_fields
 
     def __repr__(self):
-        return f"<CategoryUpdated id={self.category_id} fields={self.updated_fields} at={self.timestamp}>"
+        return f"<CategoryUpdated id={self.category_id} fields={self.updated_fields} at={self.timestamp:%d/%m/%Y %H:%M:%S}>"
 
 class CategoryActivated(CategoryEvent):
     def __repr__(self):
-        return f"<CategoryActivated id={self.category_id} at={self.timestamp}>"
+        return f"<CategoryActivated id={self.category_id} at={self.timestamp:%d/%m/%Y %H:%M:%S}>"
 
 class CategoryDeactivated(CategoryEvent):
     def __repr__(self):
-        return f"<CategoryDeactivated id={self.category_id} at={self.timestamp}>"
+        return f"<CategoryDeactivated id={self.category_id} at={self.timestamp:%d/%m/%Y %H:%M:%S}>"

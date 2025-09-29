@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Categorias{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple: #a259ff;
+            --purple-dark: #5A189A;
+            --purple-light: #EDE4FF;
+            --dark1: #18122B;
+            --dark2: #20113a;
+            --dark3: #2d1950;
+            --text-dark: #EDE4FF;
+            --text-light: #18122B;
+            --success: #8D72E1;
+            --danger: #D63484;
+            --warning: #FFB4B4;
+        }
+        body[data-theme="dark"], html[data-theme="dark"] {
+            background: var(--dark1) !important;
+            color: var(--text-dark) !important;
+        }
+        body[data-theme="light"], html[data-theme="light"] {
+            background: #f8f5ff !important;
+            color: #322153 !important;
+        }
+        .navbar {
+            background: linear-gradient(90deg, var(--purple-dark), var(--purple));
+        }
+        [data-theme="light"] .navbar {
+            background: linear-gradient(90deg, #fff, var(--purple-light));
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff !important;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        [data-theme="light"] .navbar-brand, 
+        [data-theme="light"] .navbar-nav .nav-link {
+            color: var(--purple-dark) !important;
+        }
+        .card {
+            background: rgba(30,17,54,0.97);
+            border: 1px solid var(--purple);
+            box-shadow: 0 0 12px 2px #a259ff22;
+        }
+        [data-theme="light"] .card {
+            background: #fff;
+            border: 1px solid var(--purple-light);
+            color: var(--dark2);
+        }
+        .table {
+            color: inherit;
+        }
+        .table-light {
+            background: #2d1950 !important;
+            color: #fff !important;
+        }
+        [data-theme="light"] .table-light {
+            background: #eee !important;
+            color: var(--purple-dark) !important;
+        }
+        .form-control, .form-select {
+            background: #322153;
+            color: #EDE4FF;
+            border: 1px solid var(--purple);
+        }
+        [data-theme="light"] .form-control, [data-theme="light"] .form-select {
+            background: #fff;
+            color: var(--dark2);
+            border: 1px solid var(--purple-light);
+        }
+        .form-control:focus {
+            background: #24123a;
+            color: #fff;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 0.15rem var(--purple);
+        }
+        [data-theme="light"] .form-control:focus {
+            background: #fff;
+            color: var(--dark2);
+            border-color: var(--purple);
+        }
+        .btn-primary, .btn-success {
+            background: var(--purple);
+            border: none;
+        }
+        .btn-primary:hover, .btn-success:hover {
+            background: var(--purple-dark);
+        }
+        .btn-warning {
+            background: var(--warning);
+            color: #24123a;
+        }
+        .btn-danger {
+            background: var(--danger);
+            border: none;
+        }
+        .badge.bg-success {
+            background: linear-gradient(90deg, var(--purple) 50%, var(--success) 100%);
+            color: #fff;
+            font-weight: 600;
+        }
+        .badge.bg-danger {
+            background: linear-gradient(90deg, var(--danger) 40%, var(--purple-dark) 100%);
+            color: #fff;
+            font-weight: 600;
+        }
+        .event-label.CategoryCreated {
+            color: #fff;
+            background: linear-gradient(90deg, var(--purple) 60%, var(--purple-dark) 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .event-label.CategoryUpdated {
+            color: #fff;
+            background: linear-gradient(90deg, var(--success) 60%, var(--purple) 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .event-label.CategoryActivated {
+            color: #fff;
+            background: linear-gradient(90deg, #7D26CD 50%, var(--purple) 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .event-label.CategoryDeactivated {
+            color: #fff;
+            background: linear-gradient(90deg, var(--danger) 80%, var(--purple-dark) 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .alert {
+            border: none;
+            color: #fff;
+        }
+        .alert-success { background: var(--purple); }
+        .alert-info { background: var(--success); }
+        .alert-warning { background: var(--warning); color: var(--purple-dark); }
+        .alert-danger { background: var(--danger); }
+        a {
+            color: var(--purple);
+        }
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--purple);
+        }
+        /* Toggle theme button */
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            margin-left: 12px;
+            cursor: pointer;
+        }
+        [data-theme="light"] .theme-toggle-btn {
+            color: var(--purple-dark);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Categorias</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon" style="color:#fff;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_category') }}">Adicionar</a></li>
+                <li class="nav-item">
+                    <button class="theme-toggle-btn" id="theme-toggle-btn" title="Alternar tema">
+                        <span id="theme-icon" class="bi"></span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for message, category in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+<!-- Bootstrap icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Dark/light theme toggle logic
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        document.getElementById('theme-icon').className = theme === 'dark' ? 'bi bi-moon-stars-fill' : 'bi bi-brightness-high-fill';
+    }
+    // On load, apply stored theme or system preference
+    document.addEventListener('DOMContentLoaded', function() {
+        let storedTheme = localStorage.getItem('theme');
+        if (!storedTheme) {
+            storedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        setTheme(storedTheme);
+
+        document.getElementById('theme-toggle-btn').onclick = function() {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        };
+    });
+</script>
+</body>
+</html>

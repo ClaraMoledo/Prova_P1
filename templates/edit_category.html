@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Editar Categoria{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color: #a259ff;">Editar Categoria</h2>
+<form method="POST" class="w-50 mx-auto">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" id="name" name="name" class="form-control" value="{{ cat.name }}" required maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <input type="text" id="description" name="description" class="form-control" value="{{ cat.description }}" maxlength="150">
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+    <a href="{{ url_for('category_details', cat_id=cat.id) }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

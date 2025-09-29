@@ -1,53 +1,82 @@
-# Category Domain Entity Example
+# Sistema de Categorias - Flask (Tema Lilás/Light e Dark)
 
-Este projeto demonstra uma implementação de entidade de domínio `Category` com **serialização** e **eventos de domínio** seguindo princípios de DDD (Domain-Driven Design) em Python.
+Este projeto é um sistema web de categorias, feito em **Python Flask** com interface moderna (tema escuro/dark e claro/lilás), tabela estilizada, CRUD completo e eventos.
 
 ## Funcionalidades
 
-- **Serialização:**  
-  Métodos para exportar (`to_dict`) e reconstruir (`from_dict`) objetos `Category`.
-- **Eventos de Domínio:**  
-  Eventos automáticos ao criar, atualizar, ativar e desativar categorias, armazenados em `self.events`.
-- **Código limpo e orientado ao domínio.**
+- Cadastro, edição, ativação/desativação e remoção de categorias
+- Visualização detalhada de cada categoria e seus eventos
+- Tema escuro/dark e tema claro/lilás, com botão de alternância na navbar
+- Estilo profissional, responsivo, com fonte Inter e tabelas modernas
+- Fácil de customizar
 
-## Estrutura
+---
+
+## Como rodar localmente
+
+### 1. Pré-requisitos
+
+- **Python 3.8+** instalado  
+- **pip** (gerenciador de pacotes do Python)
+
+### 2. Clone o repositório
+
+```bash
+git clone https://github.com/ClaraMoledo/Prova_P1.git
+cd SEU_REPOSITORIO
+```
+
+### 3. Crie um ambiente virtual (opcional, mas recomendado)
+
+No Windows:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+No Linux/Mac:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 4. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Estrutura dos arquivos
 
 ```
-PROVA P1
+├── app.py
 ├── category.py
 ├── events/
 │   └── category_events.py
-└── main.py
+├── requirements.txt
+└── templates/
+    ├── base.html
+    ├── index.html
+    ├── add_category.html
+    ├── edit_category.html
+    └── category_details.html
 ```
 
-## Como usar
+### 6. Rode a aplicação
 
-1. **Instale as dependências:**  
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+python app.py
+```
 
-2. **Execute o exemplo:**  
-   ```bash
-   python main.py
-   ```
+### 7. Acesse no navegador
 
-3. **Veja os resultados:**  
-   - Criação, serialização, reconstrução e histórico de eventos da categoria impressos no console.
+Abra [http://localhost:5000](http://localhost:5000) em seu navegador.
 
-## Requisitos
+---
 
-- Python 3.7+
+## Personalização de Tema
 
-> Se quiser adaptar para frameworks como Django ou FastAPI, basta ajustar a modelagem mantendo os princípios de DDD.
+- Use o botão de lua/sol na barra superior para alternar entre tema dark (preto/roxo) e tema claro (lilás).
+- A escolha do tema é salva no navegador.
 
-## Exemplos de eventos implementados
-
-- `CategoryCreated`
-- `CategoryUpdated`
-- `CategoryActivated`
-- `CategoryDeactivated`
-
-## Autor
-
-Clara Moledo
+---

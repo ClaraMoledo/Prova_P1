@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Detalhes da Categoria{% endblock %}
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header d-flex justify-content-between">
+        <span>
+            <strong style="color: #a259ff;">{{ cat.name }}</strong>
+            {% if cat.is_active %}
+                <span class="badge bg-success">Ativa</span>
+            {% else %}
+                <span class="badge bg-danger">Inativa</span>
+            {% endif %}
+        </span>
+        <span>
+            <a href="{{ url_for('edit_category', cat_id=cat.id) }}" class="btn btn-sm btn-primary">Editar</a>
+            {% if cat.is_active %}
+                <a href="{{ url_for('deactivate_category', cat_id=cat.id) }}" class="btn btn-sm btn-warning">Desativar</a>
+            {% else %}
+                <a href="{{ url_for('activate_category', cat_id=cat.id) }}" class="btn btn-sm btn-success">Ativar</a>
+            {% endif %}
+        </span>
+    </div>
+    <div class="card-body">
+        <p><strong>Descrição:</strong> {{ cat.description }}</p>
+        <h5 style="color: #a259ff;">Eventos:</h5>
+        <ul>
+            {% for ev in cat.events %}
+                <li>
+                    <span class="event-label {{ ev.__class__.__name__ }}">
+                        {{ ev }}
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+        <form action="{{ url_for('delete_category', cat_id=cat.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Deseja remover esta categoria?')">Remover</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}
