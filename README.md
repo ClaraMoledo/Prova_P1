@@ -23,7 +23,7 @@ Este projeto é um sistema web de categorias, feito em **Python Flask** com inte
 
 ```bash
 git clone https://github.com/ClaraMoledo/Prova_P1.git
-cd SEU_REPOSITORIO
+cd Prova_P1
 ```
 
 ### 3. Crie um ambiente virtual (opcional, mas recomendado)
